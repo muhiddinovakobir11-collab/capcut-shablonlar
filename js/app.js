@@ -3,8 +3,102 @@
  * Muallif: Akobir
  */
 
-// Boshlang'ich holat
-let templatesData = [];
+// Boshlang'ich shablonlar (Darhol ekranga chiqishi uchun)
+const DEFAULT_TEMPLATES = [
+  {
+    id: "template-ahmet-kaya",
+    title: "Ahmet Kaya",
+    description: "Akobir tomonidan tayyorlangan maxsus Ahmet Kaya musiqiy video montaj shabloni. Bir klikda CapCut'da oching va o'z kadrlaringizni joylang.",
+    category: "Video",
+    duration: "0:25",
+    mediaCount: "1-5 ta rasm / video",
+    views: "19.8K",
+    tag: "Premyera",
+    videoUrl: "./videos/sample1.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com/sv2/ZS9fkQmeNAKkc-r4Nyi/"
+  },
+  {
+    id: "template-1",
+    title: "Neon Beat Sync Reels",
+    description: "Musiqa zarbasiga (bitga) mos tushadigan dinamik o'tishlar va neon effektlar. TikTok va Instagram Reels uchun a'lo darajada.",
+    category: "Reels/TikTok",
+    duration: "0:15",
+    mediaCount: "7 ta rasm / video",
+    views: "24.5K",
+    tag: "Trend",
+    videoUrl: "./videos/sample2.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  },
+  {
+    id: "template-2",
+    title: "Premium Mahsulot Reklamasi",
+    description: "Kiyim, krossovka, parfyum yoki aksessuarlar sotuvi uchun estetik va qimmat ko'rinuvchi promo shablon.",
+    category: "Reklama",
+    duration: "0:20",
+    mediaCount: "5 ta rasm / video",
+    views: "18.2K",
+    tag: "Ommabop",
+    videoUrl: "./videos/sample3.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  },
+  {
+    id: "template-3",
+    title: "Unutilmas To'y Lahzalari",
+    description: "Yumshoq ranglar, romantik o'tishlar va sekinlashtirilgan (slow-motion) effektli to'y va sevgilim xotiralari.",
+    category: "To'y",
+    duration: "0:30",
+    mediaCount: "8 ta rasm / video",
+    views: "31.0K",
+    tag: "Top",
+    videoUrl: "./videos/sample4.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  },
+  {
+    id: "template-4",
+    title: "Tug'ilgan Kun Tabrigi (Party)",
+    description: "Salomlar, konfetti va yorqin ranglar bilan bezatilgan bayramona tabrik shabloni. Do'stlar va yaqinlar uchun.",
+    category: "Tug'ilgan kun",
+    duration: "0:18",
+    mediaCount: "6 ta rasm / video",
+    views: "15.7K",
+    tag: "Yangi",
+    videoUrl: "./videos/sample5.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  },
+  {
+    id: "template-5",
+    title: "Cinematic Sayohat Vlogi",
+    description: "Shahar ko'chalari, tabiat manzaralari va sayohat kadrlarini kino uslubida yig'ib beruvchi estetik shablon.",
+    category: "Vlog",
+    duration: "0:25",
+    mediaCount: "10 ta rasm / video",
+    views: "28.9K",
+    tag: "Trend",
+    videoUrl: "./videos/sample6.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  },
+  {
+    id: "template-6",
+    title: "Minimalist Foto Kollej",
+    description: "Foto arxivingizdan eng sara lahzalarni bitta chiroyli ritm ostida ko'rsatib beruvchi zamonaviy slaydshou.",
+    category: "Reels/TikTok",
+    duration: "0:12",
+    mediaCount: "12 ta fotosurat",
+    views: "19.4K",
+    tag: "Ommabop",
+    videoUrl: "./videos/sample7.mp4",
+    posterUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop&q=80",
+    capcutUrl: "https://www.capcut.com"
+  }
+];
+
+let templatesData = [...DEFAULT_TEMPLATES];
 let activeCategory = 'all';
 let searchQuery = '';
 
@@ -33,9 +127,6 @@ const modalCopyLink = document.getElementById('modal-copy-link');
 const toast = document.getElementById('toast');
 const toastMessage = document.getElementById('toast-message');
 
-/**
- * Toast xabarini ko'rsatish
- */
 function showToast(message) {
   if (!toast) return;
   toastMessage.textContent = message;
@@ -52,120 +143,29 @@ async function loadTemplates() {
   try {
     const response = await fetch('./data/templates.json?v=' + Date.now());
     if (response.ok) {
-      templatesData = await response.json();
-      renderTemplates();
-      return;
+      const data = await response.json();
+      if (Array.isArray(data) && data.length > 0) {
+        templatesData = data;
+        renderTemplates();
+        return;
+      }
     }
   } catch (error) {
-    console.warn("Fayldan yuklashda xatolik, mahalliy saqlangan ma'lumot tekshirilmoqda:", error);
+    console.warn("Fayldan yangilashda xatolik, standart ma'lumotlar ishlatilmoqda:", error);
   }
 
-  // Agar admindan qo'shilgan mahalliy ma'lumot bo'lsa
+  // LocalStorage tekshirish
   const localData = localStorage.getItem('capcut_custom_templates');
   if (localData) {
     try {
-      templatesData = JSON.parse(localData);
-      renderTemplates();
-      return;
+      const parsed = JSON.parse(localData);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        templatesData = parsed;
+      }
     } catch (e) {}
   }
 
-  // Standart zaxira shablonlar
-  templatesData = [
-    {
-      id: "template-ahmet-kaya",
-      title: "Ahmet Kaya",
-      description: "Akobir tomonidan tayyorlangan maxsus Ahmet Kaya musiqiy video montaj shabloni.",
-      category: "Video",
-      duration: "0:25",
-      mediaCount: "1-5 ta rasm / video",
-      views: "19.8K",
-      tag: "Premyera",
-      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-a-guitarist-playing-on-stage-42475-large.mp4",
-      posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
-      capcutUrl: "https://www.capcut.com/sv2/ZS9fkQmeNAKkc-r4Nyi/"
-    }
-      {
-        id: "template-1",
-        title: "Neon Beat Sync Reels",
-        description: "Musiqa zarbasiga mos dinamik o'tishlar va neon effektlar. TikTok va Reels uchun a'lo darajada.",
-        category: "Reels/TikTok",
-        duration: "0:15",
-        mediaCount: "7 ta rasm / video",
-        views: "24.5K",
-        tag: "Trend",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-vertical-shot-of-a-dj-mixing-music-in-a-nightclub-43398-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      },
-      {
-        id: "template-2",
-        title: "Premium Mahsulot Reklamasi",
-        description: "Kiyim, krossovka, parfyum yoki aksessuarlar sotuvi uchun estetik va qimmat ko'rinuvchi promo shablon.",
-        category: "Reklama",
-        duration: "0:20",
-        mediaCount: "5 ta rasm / video",
-        views: "18.2K",
-        tag: "Ommabop",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-model-posing-for-a-fashion-photoshoot-42460-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      },
-      {
-        id: "template-3",
-        title: "Unutilmas To'y Lahzalari",
-        description: "Yumshoq ranglar, romantik o'tishlar va sekinlashtirilgan effektli to'y va sevgi xotiralari.",
-        category: "To'y",
-        duration: "0:30",
-        mediaCount: "8 ta rasm / video",
-        views: "31.0K",
-        tag: "Top",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-bride-and-groom-holding-each-other-42861-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      },
-      {
-        id: "template-4",
-        title: "Tug'ilgan Kun Tabrigi (Party)",
-        description: "Salomlar, konfetti va yorqin ranglar bilan bezatilgan bayramona tabrik shabloni.",
-        category: "Tug'ilgan kun",
-        duration: "0:18",
-        mediaCount: "6 ta rasm / video",
-        views: "15.7K",
-        tag: "Yangi",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-party-with-confetti-falling-and-people-dancing-42683-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      },
-      {
-        id: "template-5",
-        title: "Cinematic Sayohat Vlogi",
-        description: "Shahar ko'chalari, tabiat manzaralari va sayohat kadrlarini kino uslubida yig'ib beruvchi estetik shablon.",
-        category: "Vlog",
-        duration: "0:25",
-        mediaCount: "10 ta rasm / video",
-        views: "28.9K",
-        tag: "Trend",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-walking-through-a-city-at-sunset-42670-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      },
-      {
-        id: "template-6",
-        title: "Minimalist Foto Kollej",
-        description: "Foto arxivingizdan eng sara lahzalarni bitta chiroyli ritm ostida ko'rsatib beruvchi zamonaviy slaydshou.",
-        category: "Reels/TikTok",
-        duration: "0:12",
-        mediaCount: "12 ta fotosurat",
-        views: "19.4K",
-        tag: "Ommabop",
-        videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-girl-taking-photos-with-a-smartphone-at-a-music-festival-42709-large.mp4",
-        posterUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop&q=80",
-        capcutUrl: "https://www.capcut.com"
-      }
-    ];
-    renderTemplates();
-  }
+  renderTemplates();
 }
 
 /**
@@ -228,7 +228,7 @@ function renderTemplates() {
             ` : ''}
           </div>
 
-          <!-- Pastki video ma'lumotlari (davomiyligi) -->
+          <!-- Pastki video ma'lumotlari -->
           <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center z-10 pointer-events-none">
             <div class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs text-white/90 flex items-center gap-1.5 font-medium">
               <svg class="w-3.5 h-3.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,7 +287,6 @@ function renderTemplates() {
     `;
   }).join('');
 
-  // Hover video autoplay hodisalari
   attachVideoHoverListeners();
 }
 
@@ -312,7 +311,6 @@ function attachVideoHoverListeners() {
     });
   });
 
-  // Mobil qurilmalarda ko'rinib turgan videoni avtomatik o'ynatish (IntersectionObserver)
   if ('IntersectionObserver' in window && window.innerWidth <= 768) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -348,7 +346,6 @@ function openModal(templateId) {
   
   modalCapcutLink.href = tpl.capcutUrl;
   
-  // Nusxa olish tugmasi
   modalCopyLink.onclick = () => {
     navigator.clipboard.writeText(tpl.capcutUrl).then(() => {
       showToast("CapCut havolasi nusxalandi!");
@@ -357,20 +354,15 @@ function openModal(templateId) {
     });
   };
 
-  // Video manzilini yuklash
   modalVideo.src = tpl.videoUrl;
   modalVideo.poster = tpl.posterUrl || '';
   modalVideo.currentTime = 0;
   modalVideo.play().catch(() => {});
 
-  // Modalni ko'rsatish
   templateModal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
-/**
- * Modalni yopish
- */
 function closeModal() {
   if (!templateModal) return;
   templateModal.classList.add('hidden');
@@ -381,7 +373,6 @@ function closeModal() {
   }
 }
 
-// Modal tinglovchilari
 if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
 if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
 
@@ -391,7 +382,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Qidiruv maydoni
 if (searchInput) {
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
@@ -399,17 +389,17 @@ if (searchInput) {
   });
 }
 
-// Kategoriya filtrlash
 filterButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active', 'bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white'));
+    filterButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeCategory = btn.getAttribute('data-category');
     renderTemplates();
   });
 });
 
-// Dasturni ishga tushirish
+// Darhol chizish va ma'lumotlarni tekshirish
+renderTemplates();
 document.addEventListener('DOMContentLoaded', () => {
   loadTemplates();
 });
