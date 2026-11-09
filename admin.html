@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boshqaruv Paneli | CapCut Shablonlar (Akobir)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-[#07090e] text-slate-100 min-h-screen py-10 px-4 sm:px-6">
+
+  <!-- ==================== PAROL BILAN KIRISH KARTASI ==================== -->
+  <div id="login-card" class="max-w-md mx-auto my-20 p-8 glass-panel rounded-3xl border border-white/10 shadow-2xl">
+    <div class="text-center">
+      <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white mb-4 shadow-lg shadow-purple-500/30">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-extrabold text-white">Admin tizimiga kirish</h1>
+      <p class="text-xs text-slate-400 mt-2">CapCut shablonlarini boshqarish uchun parolni kiriting</p>
+    </div>
+
+    <div class="mt-8 space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 mb-2">Maxfiy parol:</label>
+        <input 
+          type="password" 
+          id="admin-password-input" 
+          placeholder="Parolni kiriting..."
+          class="w-full px-4 py-3 bg-slate-900/90 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+        >
+        <p class="text-[11px] text-slate-500 mt-1.5">Standart parol: <code class="text-pink-400">akobircapcut</code></p>
+      </div>
+
+      <p id="login-error" class="text-xs text-rose-400 hidden font-medium">Noto'g'ri parol! Qaytadan urinib ko'ring.</p>
+
+      <button 
+        id="login-btn"
+        class="w-full py-3.5 px-4 rounded-xl capcut-gradient-btn text-white font-bold text-sm shadow-lg"
+      >
+        Tizimga kirish
+      </button>
+
+      <div class="text-center pt-2">
+        <a href="index.html" class="text-xs text-slate-400 hover:text-white transition flex items-center justify-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span>Asosiy saytga qaytish</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ASOSIY ADMIN DASHBOARD ==================== -->
+  <div id="admin-dashboard" class="max-w-6xl mx-auto hidden">
+    
+    <!-- Yuqori qator -->
+    <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-slate-800">
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Shablonlar Boshqaruvi</h1>
+          <span class="text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">Admin Faol</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">Yangi CapCut shablonlarini qo'shing, tahrirlang yoki o'chiring.</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+          <span>Saytni ko'rish</span>
+        </a>
+
+        <button id="logout-btn" class="px-4 py-2 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 text-xs font-semibold border border-rose-500/30 transition">
+          Chiqish
+        </button>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+      
+      <!-- CHAP TARAFI: Yangi shablon qo'shish / tahrirlash formasi -->
+      <div class="lg:col-span-1">
+        <div class="glass-panel p-6 rounded-3xl border border-white/10 sticky top-6">
+          <h2 id="form-title" class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            <span>Yangi shablon qo'shish</span>
+          </h2>
+
+          <form id="template-form" class="space-y-4">
+            
+            <!-- Nomi -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Shablon nomi *</label>
+              <input type="text" id="input-title" required placeholder="Masalan: Dynamic Neon Reels" class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500">
+            </div>
+
+            <!-- Kategoriya -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Kategoriya *</label>
+              <select id="input-category" required class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500">
+                <option value="Reels/TikTok">Reels / TikTok</option>
+                <option value="Reklama">Reklama</option>
+                <option value="To'y">To'y & Sevgi</option>
+                <option value="Tug'ilgan kun">Tug'ilgan kun</option>
+                <option value="Vlog">Vlog & Sayohat</option>
+                <option value="Boshqa">Boshqa</option>
+              </select>
+            </div>
+
+            <!-- CapCut Havolasi -->
+            <div>
+              <label class="block text-xs font-semibold text-pink-400 mb-1">CapCut Shablon havolasi *</label>
+              <input type="url" id="input-capcut-url" required placeholder="https://www.capcut.com/t/..." class="w-full px-3.5 py-2.5 bg-slate-900 border border-pink-500/50 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-pink-500">
+              <p class="text-[11px] text-slate-400 mt-1">CapCut ilovangizdagi "Share template link" havolasi</p>
+            </div>
+
+            <!-- Video Manzili (MP4) -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Video fayl havolasi (MP4) *</label>
+              <input type="url" id="input-video-url" required placeholder="https://.../video.mp4" class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500">
+              <p class="text-[11px] text-slate-500 mt-1">Tez yuklanadigan MP4 video manzili</p>
+            </div>
+
+            <!-- Muqova Rasmi (Poster) -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Muqova rasm havolasi (Poster)</label>
+              <input type="url" id="input-poster-url" placeholder="https://.../image.jpg" class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500">
+            </div>
+
+            <!-- Davomiylik & Medialar soni -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Davomiyligi</label>
+                <input type="text" id="input-duration" placeholder="0:15" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Media soni</label>
+                <input type="text" id="input-media-count" placeholder="6 ta rasm" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+              </div>
+            </div>
+
+            <!-- Teg (Ixtiyoriy) -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Nishon / Teg (Ixtiyoriy)</label>
+              <input type="text" id="input-tag" placeholder="Trend, Yangi, Top" class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+            </div>
+
+            <!-- Tavsif -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Qisqa tavsif</label>
+              <textarea id="input-description" rows="3" placeholder="Shablon haqida bir necha so'z..." class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500"></textarea>
+            </div>
+
+            <!-- Saqlash / Bekor qilish -->
+            <div class="pt-2 flex gap-2">
+              <button type="submit" class="flex-1 py-3 px-4 rounded-xl capcut-gradient-btn text-white font-bold text-xs sm:text-sm shadow-md">
+                Saqlash
+              </button>
+              <button type="button" id="reset-form-btn" class="py-3 px-4 rounded-xl bg-slate-800 text-slate-400 hover:text-white text-xs font-semibold">
+                Bekor
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- O'NG TARAFI: Mavjud shablonlar jadvali va Eksport vositalari -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Yuqori yordamchi tugmalar (JSON eksport / Zaxira) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-4 glass-panel rounded-2xl border border-white/10">
+          <div>
+            <h3 class="text-sm font-bold text-white">Fayllarni boshqarish</h3>
+            <p class="text-xs text-slate-400">O'zgarishlar brauzeringizda saqlandi. Vercel/Netlify'ga yuklash uchun JSON faylni ko'chirib olishingiz mumkin.</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="export-json-btn" class="px-3.5 py-2 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 text-purple-300 border border-purple-500/40 text-xs font-bold transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+              <span>templates.json ni yuklab olish</span>
+            </button>
+
+            <button id="reset-defaults-btn" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs transition">
+              Asliga qaytarish
+            </button>
+          </div>
+        </div>
+
+        <!-- Shablonlar ro'yxati -->
+        <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden">
+          <div class="px-6 py-4 border-b border-slate-850 flex items-center justify-between">
+            <h2 class="text-base font-bold text-white">Mavjud shablonlar ro'yxati</h2>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-900/60 border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                  <th class="px-4 py-3">#</th>
+                  <th class="px-4 py-3">Shablon</th>
+                  <th class="px-4 py-3">Kategoriya</th>
+                  <th class="px-4 py-3">Ma'lumot</th>
+                  <th class="px-4 py-3">CapCut Havolasi</th>
+                  <th class="px-4 py-3 text-right">Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="templates-table-body">
+                <!-- JS orqali to'ldiriladi -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="./js/admin.js"></script>
+</body>
+</html>
