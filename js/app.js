@@ -260,6 +260,16 @@ function renderTemplates() {
           <!-- Tugmalar -->
           <div class="mt-5 grid grid-cols-2 gap-2.5">
             <button 
+              onclick="useInStudio('${tpl.title}')"
+              class="w-full py-2.5 px-3 rounded-xl capcut-gradient-btn text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-1.5 shadow-md"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+              <span>Video Yasash</span>
+            </button>
+
+            <button 
               onclick="openModal('${tpl.id}')"
               class="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium text-xs sm:text-sm text-center border border-slate-700/60 transition flex items-center justify-center gap-1.5"
             >
@@ -269,18 +279,6 @@ function renderTemplates() {
               </svg>
               <span>Ko'rish</span>
             </button>
-            
-            <a 
-              href="${tpl.capcutUrl}" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="w-full py-2.5 px-3 rounded-xl capcut-gradient-btn text-white font-semibold text-xs sm:text-sm text-center flex items-center justify-center gap-1.5 shadow-md"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-              </svg>
-              <span>CapCut</span>
-            </a>
           </div>
         </div>
       </article>
@@ -398,8 +396,131 @@ filterButtons.forEach(btn => {
   });
 });
 
+// ==================== STUDIO BOSHQARUVI ====================
+let videoStudio = null;
+
+function initStudio() {
+  if (typeof WebVideoStudio === 'undefined') return;
+  videoStudio = new WebVideoStudio();
+
+  const fileInput = document.getElementById('studio-file-input');
+  const imgCount = document.getElementById('studio-img-count');
+  const thumbnails = document.getElementById('studio-thumbnails');
+  const textInput = document.getElementById('studio-text-input');
+  const effectBtns = document.querySelectorAll('.studio-effect-btn');
+  const playBtn = document.getElementById('studio-play-btn');
+  const stopBtn = document.getElementById('studio-stop-btn');
+  const exportBtn = document.getElementById('studio-export-btn');
+  const recordingOverlay = document.getElementById('studio-recording-overlay');
+  const progressFill = document.getElementById('studio-progress-fill');
+  const progressText = document.getElementById('studio-progress-text');
+
+  if (fileInput) {
+    fileInput.addEventListener('change', async (e) => {
+      const files = e.target.files;
+      if (!files || files.length === 0) return;
+
+      imgCount.textContent = `${files.length} ta rasm tanlandi`;
+      thumbnails.innerHTML = '';
+
+      Array.from(files).forEach(f => {
+        const thumb = document.createElement('img');
+        thumb.src = URL.createObjectURL(f);
+        thumb.className = 'w-12 h-12 object-cover rounded-lg border border-purple-500/40 flex-shrink-0';
+        thumbnails.appendChild(thumb);
+      });
+
+      await videoStudio.loadImagesFromFiles(files);
+      showToast(`${files.length} ta rasm yuklandi! "Jonli ko'rish"ni bosing.`);
+    });
+  }
+
+  if (textInput) {
+    videoStudio.overlayText = textInput.value;
+    textInput.addEventListener('input', (e) => {
+      videoStudio.overlayText = e.target.value.trim();
+      videoStudio.drawFrame(0);
+    });
+  }
+
+  effectBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      effectBtns.forEach(b => {
+        b.classList.remove('active', 'border-pink-500/60', 'bg-pink-950/40', 'text-pink-300');
+        b.classList.add('border-slate-800', 'bg-slate-900/80', 'text-slate-400');
+      });
+      btn.classList.add('active', 'border-pink-500/60', 'bg-pink-950/40', 'text-pink-300');
+      btn.classList.remove('border-slate-800', 'bg-slate-900/80', 'text-slate-400');
+      videoStudio.currentEffect = btn.getAttribute('data-effect');
+      videoStudio.drawFrame(0);
+    });
+  });
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (videoStudio.userImages.length === 0) {
+        showToast("Iltimos, avval o'z rasmlaringizni yuklang!");
+        if (fileInput) fileInput.click();
+        return;
+      }
+      videoStudio.playPreview();
+    });
+  }
+
+  if (stopBtn) {
+    stopBtn.addEventListener('click', () => {
+      videoStudio.stopPreview();
+    });
+  }
+
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      if (videoStudio.userImages.length === 0) {
+        showToast("Iltimos, avval o'z rasmlaringizni yuklang!");
+        if (fileInput) fileInput.click();
+        return;
+      }
+
+      recordingOverlay.classList.remove('hidden');
+      recordingOverlay.classList.add('flex');
+
+      videoStudio.exportVideo(
+        (percent) => {
+          progressFill.style.width = `${percent}%`;
+          progressText.textContent = `${percent}%`;
+        },
+        () => {
+          recordingOverlay.classList.add('hidden');
+          recordingOverlay.classList.remove('flex');
+          showToast("Video muvaffaqiyatli yuklab olindi! 🎉");
+        }
+      );
+    });
+  }
+}
+
+window.useInStudio = function(templateTitle) {
+  const textInput = document.getElementById('studio-text-input');
+  if (textInput) {
+    textInput.value = templateTitle;
+    if (videoStudio) {
+      videoStudio.overlayText = templateTitle;
+      videoStudio.drawFrame(0);
+    }
+  }
+
+  closeModal();
+
+  const studioSection = document.getElementById('studio-section');
+  if (studioSection) {
+    studioSection.scrollIntoView({ behavior: 'smooth' });
+    showToast(`"${templateTitle}" shabloni tanlandi! Rasmlaringizni yuklang.`);
+  }
+};
+
 // Darhol chizish va ma'lumotlarni tekshirish
 renderTemplates();
 document.addEventListener('DOMContentLoaded', () => {
   loadTemplates();
+  initStudio();
 });

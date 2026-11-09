@@ -144,6 +144,10 @@ body {
     aspect-ratio: 16 / 9;
     min-height: 400px;
   }
+  .studio-canvas-box {
+    aspect-ratio: 16 / 9;
+    max-height: 480px;
+  }
 }
 
 /* 2. Telefonlarda (Mobile): VERTIKAL 9:16 Reels/TikTok Formati */
@@ -154,6 +158,10 @@ body {
   .modal-video-box {
     aspect-ratio: 9 / 16;
     max-height: 60vh;
+  }
+  .studio-canvas-box {
+    aspect-ratio: 9 / 16;
+    max-width: 330px;
   }
 }
 
