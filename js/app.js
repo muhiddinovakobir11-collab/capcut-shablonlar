@@ -46,28 +46,45 @@ function showToast(message) {
 }
 
 /**
- * Ma'lumotlarni yuklash (LocalStorage yoki data/templates.json dan)
+ * Ma'lumotlarni yuklash (data/templates.json dan yoki LocalStorage dan)
  */
 async function loadTemplates() {
   try {
-    // Agar admindan qo'shilgan mahalliy ma'lumot bo'lsa, undan foydalanamiz
-    const localData = localStorage.getItem('capcut_custom_templates');
-    if (localData) {
-      templatesData = JSON.parse(localData);
+    const response = await fetch('./data/templates.json?v=' + Date.now());
+    if (response.ok) {
+      templatesData = await response.json();
       renderTemplates();
       return;
     }
-
-    const response = await fetch('./data/templates.json');
-    if (!response.ok) {
-      throw new Error("JSON faylni yuklab bo'lmadi");
-    }
-    templatesData = await response.json();
-    renderTemplates();
   } catch (error) {
-    console.warn("Fayldan yuklashda xatolik:", error);
-    // Standart zaxira shablonlar (agar fetch mahalliy fayl tizimida cors bergan bo'lsa)
-    templatesData = [
+    console.warn("Fayldan yuklashda xatolik, mahalliy saqlangan ma'lumot tekshirilmoqda:", error);
+  }
+
+  // Agar admindan qo'shilgan mahalliy ma'lumot bo'lsa
+  const localData = localStorage.getItem('capcut_custom_templates');
+  if (localData) {
+    try {
+      templatesData = JSON.parse(localData);
+      renderTemplates();
+      return;
+    } catch (e) {}
+  }
+
+  // Standart zaxira shablonlar
+  templatesData = [
+    {
+      id: "template-ahmet-kaya",
+      title: "Ahmet Kaya",
+      description: "Akobir tomonidan tayyorlangan maxsus Ahmet Kaya musiqiy video montaj shabloni.",
+      category: "Video",
+      duration: "0:25",
+      mediaCount: "1-5 ta rasm / video",
+      views: "19.8K",
+      tag: "Premyera",
+      videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-a-guitarist-playing-on-stage-42475-large.mp4",
+      posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+      capcutUrl: "https://www.capcut.com/sv2/ZS9fkB7qsxRT3-yQQkL/"
+    }
       {
         id: "template-1",
         title: "Neon Beat Sync Reels",
