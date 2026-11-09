@@ -1,190 +1,171 @@
 /**
- * CapCut Shablonlar Galereyasi
- * Muallif: Akobir
+ * CapCut Rasmiy Uslubidagi Shablonlar Portali
+ * Muallif: Akobir (CapCut Creator)
  */
 
-// Boshlang'ich shablonlar (Darhol ekranga chiqishi uchun)
 const DEFAULT_TEMPLATES = [
   {
-    id: "template-ahmet-kaya",
-    title: "Ahmet Kaya",
-    description: "Akobir tomonidan tayyorlangan maxsus Ahmet Kaya musiqiy video montaj shabloni. Bir klikda CapCut'da oching va o'z kadrlaringizni joylang.",
-    category: "Video",
+    id: "tpl-ahmet-kaya",
+    title: "Ahmet Kaya — Ritmik Montaj",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Ahmet Kaya",
     duration: "0:25",
-    mediaCount: "1-5 ta rasm / video",
-    views: "19.8K",
-    tag: "Premyera",
+    clips: "2-5 ta klip/rasm",
+    uses: "485.2K",
+    likes: "42.8K",
+    music: "Ahmet Kaya — Kum Gibi (Remix)",
     videoUrl: "./videos/sample1.mp4",
     posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com/sv2/ZS9fkQmeNAKkc-r4Nyi/"
+    capcutUrl: "https://www.capcut.com/sv2/ZS9fkQmeNAKkc-r4Nyi/",
+    isTrending: true
   },
   {
-    id: "template-1",
-    title: "Neon Beat Sync Reels",
-    description: "Musiqa zarbasiga (bitga) mos tushadigan dinamik o'tishlar va neon effektlar. TikTok va Instagram Reels uchun a'lo darajada.",
-    category: "Reels/TikTok",
+    id: "tpl-neon-beat",
+    title: "Neon Beat Sync — TikTok Trend",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Musiqa & Beat",
     duration: "0:15",
-    mediaCount: "7 ta rasm / video",
-    views: "24.5K",
-    tag: "Trend",
+    clips: "7 ta fotosurat",
+    uses: "890.4K",
+    likes: "78.1K",
+    music: "Phonk Beat — DRIFT VIP",
     videoUrl: "./videos/sample2.mp4",
     posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
+    capcutUrl: "https://www.capcut.com",
+    isTrending: true
   },
   {
-    id: "template-2",
-    title: "Premium Mahsulot Reklamasi",
-    description: "Kiyim, krossovka, parfyum yoki aksessuarlar sotuvi uchun estetik va qimmat ko'rinuvchi promo shablon.",
-    category: "Reklama",
+    id: "tpl-slowmo-cinematic",
+    title: "Cinematic Slow Motion 4K",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Slow Motion",
     duration: "0:20",
-    mediaCount: "5 ta rasm / video",
-    views: "18.2K",
-    tag: "Ommabop",
+    clips: "3 ta video",
+    uses: "320.6K",
+    likes: "29.4K",
+    music: "Hans Zimmer Style — Epic Vibe",
     videoUrl: "./videos/sample3.mp4",
     posterUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
+    capcutUrl: "https://www.capcut.com",
+    isTrending: false
   },
   {
-    id: "template-3",
-    title: "Unutilmas To'y Lahzalari",
-    description: "Yumshoq ranglar, romantik o'tishlar va sekinlashtirilgan (slow-motion) effektli to'y va sevgilim xotiralari.",
-    category: "To'y",
+    id: "tpl-love-lyrics",
+    title: "Romantik Sevgi & Lirika",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Sevgi & Lirika",
     duration: "0:30",
-    mediaCount: "8 ta rasm / video",
-    views: "31.0K",
-    tag: "Top",
+    clips: "8 ta fotosurat",
+    uses: "610.9K",
+    likes: "54.2K",
+    music: "Sokin Sevgi Qo'shig'i (Acoustic)",
     videoUrl: "./videos/sample4.mp4",
     posterUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
+    capcutUrl: "https://www.capcut.com",
+    isTrending: true
   },
   {
-    id: "template-4",
+    id: "tpl-birthday-party",
     title: "Tug'ilgan Kun Tabrigi (Party)",
-    description: "Salomlar, konfetti va yorqin ranglar bilan bezatilgan bayramona tabrik shabloni. Do'stlar va yaqinlar uchun.",
-    category: "Tug'ilgan kun",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Foto Kollaj",
     duration: "0:18",
-    mediaCount: "6 ta rasm / video",
-    views: "15.7K",
-    tag: "Yangi",
+    clips: "6 ta rasm",
+    uses: "215.0K",
+    likes: "19.8K",
+    music: "Happy Birthday Beat Remix",
     videoUrl: "./videos/sample5.mp4",
     posterUrl: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
+    capcutUrl: "https://www.capcut.com",
+    isTrending: false
   },
   {
-    id: "template-5",
-    title: "Cinematic Sayohat Vlogi",
-    description: "Shahar ko'chalari, tabiat manzaralari va sayohat kadrlarini kino uslubida yig'ib beruvchi estetik shablon.",
-    category: "Vlog",
+    id: "tpl-travel-vlog",
+    title: "Sayohat & Mini Vlog Estetikasi",
+    creator: "Akobir",
+    creatorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+    category: "Trenddagilar",
     duration: "0:25",
-    mediaCount: "10 ta rasm / video",
-    views: "28.9K",
-    tag: "Trend",
+    clips: "10 ta video/rasm",
+    uses: "740.1K",
+    likes: "65.7K",
+    music: "Summer Chill Vibes (Lo-fi)",
     videoUrl: "./videos/sample6.mp4",
     posterUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
-  },
-  {
-    id: "template-6",
-    title: "Minimalist Foto Kollej",
-    description: "Foto arxivingizdan eng sara lahzalarni bitta chiroyli ritm ostida ko'rsatib beruvchi zamonaviy slaydshou.",
-    category: "Reels/TikTok",
-    duration: "0:12",
-    mediaCount: "12 ta fotosurat",
-    views: "19.4K",
-    tag: "Ommabop",
-    videoUrl: "./videos/sample7.mp4",
-    posterUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop&q=80",
-    capcutUrl: "https://www.capcut.com"
+    capcutUrl: "https://www.capcut.com",
+    isTrending: true
   }
 ];
 
 let templatesData = [...DEFAULT_TEMPLATES];
 let activeCategory = 'all';
 let searchQuery = '';
+let likedTemplates = new Set();
 
 // DOM elementlar
 const templatesGrid = document.getElementById('templates-grid');
-const filterButtons = document.querySelectorAll('.filter-btn');
 const searchInput = document.getElementById('search-input');
-const totalCountBadge = document.getElementById('total-count-badge');
+const chipsContainer = document.getElementById('chips-container');
 const emptyState = document.getElementById('empty-state');
 
-// Modal elementlari
-const templateModal = document.getElementById('template-modal');
-const modalBackdrop = document.getElementById('modal-backdrop');
-const closeModalBtn = document.getElementById('close-modal-btn');
-const modalVideo = document.getElementById('modal-video');
-const modalTitle = document.getElementById('modal-title');
-const modalCategory = document.getElementById('modal-category');
-const modalDuration = document.getElementById('modal-duration');
-const modalMediaCount = document.getElementById('modal-media-count');
-const modalViews = document.getElementById('modal-views');
-const modalDescription = document.getElementById('modal-description');
-const modalCapcutLink = document.getElementById('modal-capcut-link');
-const modalCopyLink = document.getElementById('modal-copy-link');
+// Modal elementlar
+const modal = document.getElementById('cc-modal');
+const modalBackdrop = document.getElementById('cc-modal-backdrop');
+const modalClose = document.getElementById('cc-modal-close');
+const modalVideo = document.getElementById('cc-modal-video');
+const modalTitle = document.getElementById('cc-modal-title');
+const modalCreatorName = document.getElementById('cc-modal-creator-name');
+const modalCreatorAvatar = document.getElementById('cc-modal-creator-avatar');
+const modalMusic = document.getElementById('cc-modal-music');
+const modalClips = document.getElementById('cc-modal-clips');
+const modalUses = document.getElementById('cc-modal-uses');
+const modalCapcutBtn = document.getElementById('cc-modal-capcut-btn');
+const modalShareBtn = document.getElementById('cc-modal-share-btn');
 
 // Toast
-const toast = document.getElementById('toast');
-const toastMessage = document.getElementById('toast-message');
+const toast = document.getElementById('cc-toast');
+const toastMessage = document.getElementById('cc-toast-msg');
 
-function showToast(message) {
+function showToast(msg) {
   if (!toast) return;
-  toastMessage.textContent = message;
+  toastMessage.textContent = msg;
   toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3000);
+  setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-/**
- * Ma'lumotlarni yuklash (data/templates.json dan yoki LocalStorage dan)
- */
+// Ma'lumotlarni yuklash
 async function loadTemplates() {
   try {
-    const response = await fetch('./data/templates.json?v=' + Date.now());
-    if (response.ok) {
-      const data = await response.json();
+    const res = await fetch('./data/templates.json?v=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         templatesData = data;
         renderTemplates();
-        return;
       }
     }
-  } catch (error) {
-    console.warn("Fayldan yangilashda xatolik, standart ma'lumotlar ishlatilmoqda:", error);
+  } catch (e) {
+    console.warn("Fayldan yuklashda zaxira ishlatildi:", e);
   }
-
-  // LocalStorage tekshirish
-  const localData = localStorage.getItem('capcut_custom_templates');
-  if (localData) {
-    try {
-      const parsed = JSON.parse(localData);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        templatesData = parsed;
-      }
-    } catch (e) {}
-  }
-
-  renderTemplates();
 }
 
-/**
- * Kartochkalarni HTML formatida chiqarish
- */
+// Kartochkalarni chizish
 function renderTemplates() {
   if (!templatesGrid) return;
 
   const filtered = templatesData.filter(tpl => {
-    const matchesCategory = activeCategory === 'all' || tpl.category === activeCategory;
+    const matchesCat = activeCategory === 'all' || 
+                       (activeCategory === 'trending' ? tpl.isTrending : tpl.category === activeCategory);
     const matchesSearch = tpl.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          tpl.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          tpl.category.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+                          tpl.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          (tpl.music && tpl.music.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCat && matchesSearch;
   });
-
-  if (totalCountBadge) {
-    totalCountBadge.textContent = `${filtered.length} ta shablon`;
-  }
 
   if (filtered.length === 0) {
     templatesGrid.innerHTML = '';
@@ -195,10 +176,12 @@ function renderTemplates() {
   if (emptyState) emptyState.classList.add('hidden');
 
   templatesGrid.innerHTML = filtered.map(tpl => {
+    const isLiked = likedTemplates.has(tpl.id);
     return `
-      <article class="template-card group flex flex-col justify-between" data-id="${tpl.id}">
-        <!-- Video qismi (9:16) -->
-        <div class="video-container relative cursor-pointer" onclick="openModal('${tpl.id}')">
+      <article class="cc-template-card group flex flex-col justify-between" data-id="${tpl.id}">
+        
+        <!-- Video konteyner (Telefonda 9:16, Kompyuterda 16:9) -->
+        <div class="cc-video-box relative cursor-pointer" onclick="openTemplateModal('${tpl.id}')">
           <video 
             src="${tpl.videoUrl}" 
             poster="${tpl.posterUrl || ''}" 
@@ -206,164 +189,162 @@ function renderTemplates() {
             loop 
             playsinline 
             preload="metadata"
-            class="card-video"
           ></video>
-          
-          <!-- Play Badge -->
-          <div class="play-badge shadow-lg">
-            <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-          </div>
 
-          <!-- Yuqori teglari -->
-          <div class="absolute top-3 left-3 right-3 flex justify-between items-center z-10 pointer-events-none">
-            <span class="badge-tag px-3 py-1 rounded-full text-xs font-semibold text-white tracking-wide shadow-sm">
-              ${tpl.category}
-            </span>
-            ${tpl.tag ? `
-              <span class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider uppercase shadow-md">
-                ${tpl.tag}
+          <!-- Yuqori qatlam: Trending belgisi va Foydalanishlar soni -->
+          <div class="absolute top-2.5 left-2.5 right-2.5 flex justify-between items-center z-10 pointer-events-none">
+            ${tpl.isTrending ? `
+              <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow">
+                Trend 🔥
               </span>
-            ` : ''}
+            ` : `
+              <span class="bg-black/60 backdrop-blur-md text-white/90 px-2 py-0.5 rounded-full text-[10px] font-medium border border-white/10">
+                ${tpl.category}
+              </span>
+            `}
+
+            <div class="bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md text-[11px] font-medium text-white/90 flex items-center gap-1 border border-white/10">
+              <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span>${tpl.uses}</span>
+            </div>
           </div>
 
-          <!-- Pastki video ma'lumotlari -->
-          <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center z-10 pointer-events-none">
-            <div class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs text-white/90 flex items-center gap-1.5 font-medium">
-              <svg class="w-3.5 h-3.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <!-- O'rtadagi Play nishoni -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
               </svg>
-              <span>${tpl.duration || '0:15'}</span>
             </div>
-            <div class="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs text-white/90 flex items-center gap-1.5 font-medium">
-              <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-              </svg>
-              <span>${tpl.views || '10K+'}</span>
-            </div>
+          </div>
+
+          <!-- Pastki o'ng taraf: Video vaqti -->
+          <div class="absolute bottom-2.5 right-2.5 pointer-events-none">
+            <span class="bg-black/80 px-2 py-0.5 rounded text-[10px] font-mono text-white/90">
+              ${tpl.duration}
+            </span>
           </div>
         </div>
 
-        <!-- Matn va Tugmalar qismi -->
-        <div class="p-5 flex flex-col flex-grow justify-between bg-slate-900/40">
+        <!-- Pastki axborot va harakatlar qismi -->
+        <div class="p-3.5 flex flex-col justify-between flex-grow bg-[#141418]">
           <div>
-            <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition-colors line-clamp-1">
+            <h3 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
               ${tpl.title}
             </h3>
-            <p class="text-sm text-slate-400 mt-2 line-clamp-2 leading-relaxed">
-              ${tpl.description}
-            </p>
+
+            <!-- Muallif va Musiqa -->
+            <div class="flex items-center gap-2 mt-2">
+              <img src="${tpl.creatorAvatar}" alt="${tpl.creator}" class="w-5 h-5 rounded-full object-cover border border-white/20">
+              <span class="text-xs text-zinc-300 font-medium">${tpl.creator}</span>
+              <span class="w-1 h-1 rounded-full bg-zinc-600"></span>
+              <span class="text-[11px] text-zinc-400 truncate max-w-[120px]">${tpl.clips}</span>
+            </div>
           </div>
 
-          <!-- Tugmalar -->
-          <div class="mt-5 grid grid-cols-2 gap-2.5">
+          <!-- Pastki tugmalar qatori -->
+          <div class="mt-3.5 flex items-center justify-between gap-2 pt-2.5 border-t border-white/5">
+            <!-- Like tugmasi -->
             <button 
-              onclick="useInStudio('${tpl.title}')"
-              class="w-full py-2.5 px-3 rounded-xl capcut-gradient-btn text-white font-bold text-xs sm:text-sm text-center flex items-center justify-center gap-1.5 shadow-md"
+              onclick="toggleLike(event, '${tpl.id}')" 
+              class="flex items-center gap-1.5 text-xs ${isLiked ? 'text-pink-500 font-bold' : 'text-zinc-400 hover:text-white'} transition"
             >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              <svg class="w-4 h-4 ${isLiked ? 'fill-current' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
-              <span>Video Yasash</span>
+              <span>${tpl.likes}</span>
             </button>
 
-            <button 
-              onclick="openModal('${tpl.id}')"
-              class="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium text-xs sm:text-sm text-center border border-slate-700/60 transition flex items-center justify-center gap-1.5"
+            <!-- CapCut'da ochish tugmasi -->
+            <a 
+              href="${tpl.capcutUrl}" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="cc-btn-white px-3.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm"
+              onclick="event.stopPropagation();"
             >
-              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              <span>Shablonni ochish</span>
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
               </svg>
-              <span>Ko'rish</span>
-            </button>
+            </a>
           </div>
+
         </div>
+
       </article>
     `;
   }).join('');
 
-  attachVideoHoverListeners();
+  attachVideoHover();
 }
 
-/**
- * Hover paytida video avtomatik o'ynalishi
- */
-function attachVideoHoverListeners() {
-  const cards = document.querySelectorAll('.template-card');
+// Hover video ijrosi
+function attachVideoHover() {
+  const cards = document.querySelectorAll('.cc-template-card');
   cards.forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
 
     card.addEventListener('mouseenter', () => {
-      card.classList.add('is-playing');
       video.play().catch(() => {});
     });
 
     card.addEventListener('mouseleave', () => {
-      card.classList.remove('is-playing');
       video.pause();
       video.currentTime = 0;
     });
   });
-
-  if ('IntersectionObserver' in window && window.innerWidth <= 768) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const video = entry.target.querySelector('video');
-        if (!video) return;
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-playing');
-          video.play().catch(() => {});
-        } else {
-          entry.target.classList.remove('is-playing');
-          video.pause();
-        }
-      });
-    }, { threshold: 0.65 });
-
-    cards.forEach(card => observer.observe(card));
-  }
 }
 
-/**
- * Shablon tafsilot modalini ochish
- */
-function openModal(templateId) {
-  const tpl = templatesData.find(item => item.id === templateId);
-  if (!tpl || !templateModal) return;
+// Like bosish
+window.toggleLike = function(e, id) {
+  e.stopPropagation();
+  if (likedTemplates.has(id)) {
+    likedTemplates.delete(id);
+    showToast("Yoqtirish bekor qilindi");
+  } else {
+    likedTemplates.add(id);
+    showToast("Sevimlilarga qo'shildi! ❤️");
+  }
+  renderTemplates();
+};
+
+// Modal ochish
+window.openTemplateModal = function(id) {
+  const tpl = templatesData.find(t => t.id === id);
+  if (!tpl || !modal) return;
 
   modalTitle.textContent = tpl.title;
-  modalCategory.textContent = tpl.category;
-  modalDuration.textContent = tpl.duration || '0:15';
-  modalMediaCount.textContent = tpl.mediaCount || "5-8 ta rasm/video";
-  modalViews.textContent = tpl.views || '15K+';
-  modalDescription.textContent = tpl.description;
-  
-  modalCapcutLink.href = tpl.capcutUrl;
-  
-  modalCopyLink.onclick = () => {
+  modalCreatorName.textContent = tpl.creator;
+  modalCreatorAvatar.src = tpl.creatorAvatar;
+  modalMusic.textContent = tpl.music || "Original Sound";
+  modalClips.textContent = tpl.clips;
+  modalUses.textContent = `${tpl.uses} marta ishlatildi`;
+  modalCapcutBtn.href = tpl.capcutUrl;
+
+  modalShareBtn.onclick = () => {
     navigator.clipboard.writeText(tpl.capcutUrl).then(() => {
       showToast("CapCut havolasi nusxalandi!");
     }).catch(() => {
-      showToast("Nusxalashda xatolik yuz berdi");
+      showToast("Nusxalandi!");
     });
   };
 
   modalVideo.src = tpl.videoUrl;
-  modalVideo.poster = tpl.posterUrl || '';
   modalVideo.currentTime = 0;
   modalVideo.play().catch(() => {});
 
-  templateModal.classList.remove('hidden');
+  modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
-}
+};
 
-function closeModal() {
-  if (!templateModal) return;
-  templateModal.classList.add('hidden');
+// Modal yopish
+function closeTemplateModal() {
+  if (!modal) return;
+  modal.classList.add('hidden');
   document.body.style.overflow = '';
   if (modalVideo) {
     modalVideo.pause();
@@ -371,15 +352,16 @@ function closeModal() {
   }
 }
 
-if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+if (modalClose) modalClose.addEventListener('click', closeTemplateModal);
+if (modalBackdrop) modalBackdrop.addEventListener('click', closeTemplateModal);
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && templateModal && !templateModal.classList.contains('hidden')) {
-    closeModal();
+  if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+    closeTemplateModal();
   }
 });
 
+// Qidiruv
 if (searchInput) {
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
@@ -387,140 +369,36 @@ if (searchInput) {
   });
 }
 
-filterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeCategory = btn.getAttribute('data-category');
-    renderTemplates();
-  });
-});
-
-// ==================== STUDIO BOSHQARUVI ====================
-let videoStudio = null;
-
-function initStudio() {
-  if (typeof WebVideoStudio === 'undefined') return;
-  videoStudio = new WebVideoStudio();
-
-  const fileInput = document.getElementById('studio-file-input');
-  const imgCount = document.getElementById('studio-img-count');
-  const thumbnails = document.getElementById('studio-thumbnails');
-  const textInput = document.getElementById('studio-text-input');
-  const effectBtns = document.querySelectorAll('.studio-effect-btn');
-  const playBtn = document.getElementById('studio-play-btn');
-  const stopBtn = document.getElementById('studio-stop-btn');
-  const exportBtn = document.getElementById('studio-export-btn');
-  const recordingOverlay = document.getElementById('studio-recording-overlay');
-  const progressFill = document.getElementById('studio-progress-fill');
-  const progressText = document.getElementById('studio-progress-text');
-
-  if (fileInput) {
-    fileInput.addEventListener('change', async (e) => {
-      const files = e.target.files;
-      if (!files || files.length === 0) return;
-
-      imgCount.textContent = `${files.length} ta rasm tanlandi`;
-      thumbnails.innerHTML = '';
-
-      Array.from(files).forEach(f => {
-        const thumb = document.createElement('img');
-        thumb.src = URL.createObjectURL(f);
-        thumb.className = 'w-12 h-12 object-cover rounded-lg border border-purple-500/40 flex-shrink-0';
-        thumbnails.appendChild(thumb);
-      });
-
-      await videoStudio.loadImagesFromFiles(files);
-      showToast(`${files.length} ta rasm yuklandi! "Jonli ko'rish"ni bosing.`);
-    });
-  }
-
-  if (textInput) {
-    videoStudio.overlayText = textInput.value;
-    textInput.addEventListener('input', (e) => {
-      videoStudio.overlayText = e.target.value.trim();
-      videoStudio.drawFrame(0);
-    });
-  }
-
-  effectBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      effectBtns.forEach(b => {
-        b.classList.remove('active', 'border-pink-500/60', 'bg-pink-950/40', 'text-pink-300');
-        b.classList.add('border-slate-800', 'bg-slate-900/80', 'text-slate-400');
-      });
-      btn.classList.add('active', 'border-pink-500/60', 'bg-pink-950/40', 'text-pink-300');
-      btn.classList.remove('border-slate-800', 'bg-slate-900/80', 'text-slate-400');
-      videoStudio.currentEffect = btn.getAttribute('data-effect');
-      videoStudio.drawFrame(0);
+// Kategoriya Chips
+if (chipsContainer) {
+  const chips = chipsContainer.querySelectorAll('.cc-chip');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCategory = chip.getAttribute('data-cat');
+      renderTemplates();
     });
   });
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (videoStudio.userImages.length === 0) {
-        showToast("Iltimos, avval o'z rasmlaringizni yuklang!");
-        if (fileInput) fileInput.click();
-        return;
-      }
-      videoStudio.playPreview();
-    });
-  }
-
-  if (stopBtn) {
-    stopBtn.addEventListener('click', () => {
-      videoStudio.stopPreview();
-    });
-  }
-
-  if (exportBtn) {
-    exportBtn.addEventListener('click', () => {
-      if (videoStudio.userImages.length === 0) {
-        showToast("Iltimos, avval o'z rasmlaringizni yuklang!");
-        if (fileInput) fileInput.click();
-        return;
-      }
-
-      recordingOverlay.classList.remove('hidden');
-      recordingOverlay.classList.add('flex');
-
-      videoStudio.exportVideo(
-        (percent) => {
-          progressFill.style.width = `${percent}%`;
-          progressText.textContent = `${percent}%`;
-        },
-        () => {
-          recordingOverlay.classList.add('hidden');
-          recordingOverlay.classList.remove('flex');
-          showToast("Video muvaffaqiyatli yuklab olindi! 🎉");
-        }
-      );
-    });
-  }
 }
 
-window.useInStudio = function(templateTitle) {
-  const textInput = document.getElementById('studio-text-input');
-  if (textInput) {
-    textInput.value = templateTitle;
-    if (videoStudio) {
-      videoStudio.overlayText = templateTitle;
-      videoStudio.drawFrame(0);
+// Obuna bo'lish tugmasi
+const followBtn = document.getElementById('follow-creator-btn');
+if (followBtn) {
+  let isFollowed = false;
+  followBtn.addEventListener('click', () => {
+    isFollowed = !isFollowed;
+    if (isFollowed) {
+      followBtn.textContent = "Obuna bo'lindi ✓";
+      followBtn.classList.replace('cc-btn-white', 'cc-btn-dark');
+      showToast("Akobir profiliga obuna bo'ldingiz!");
+    } else {
+      followBtn.textContent = "Obuna bo'lish +";
+      followBtn.classList.replace('cc-btn-dark', 'cc-btn-white');
     }
-  }
+  });
+}
 
-  closeModal();
-
-  const studioSection = document.getElementById('studio-section');
-  if (studioSection) {
-    studioSection.scrollIntoView({ behavior: 'smooth' });
-    showToast(`"${templateTitle}" shabloni tanlandi! Rasmlaringizni yuklang.`);
-  }
-};
-
-// Darhol chizish va ma'lumotlarni tekshirish
+// Boshlash
 renderTemplates();
-document.addEventListener('DOMContentLoaded', () => {
-  loadTemplates();
-  initStudio();
-});
+document.addEventListener('DOMContentLoaded', loadTemplates);
