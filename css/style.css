@@ -1,37 +1,36 @@
 /* ==========================================================================
-   CapCut Rasmiy Uslubidagi Shablonlar Portali
-   Muallif: Akobir (CapCut Creator)
+   CapCut Rasmiy Web Portali - 1:1 Aniq Dizayn
+   Muallif: Akobir (CapCut Verified Creator)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-  --cc-black: #000000;
-  --cc-bg-surface: #0e0e10;
-  --cc-bg-card: #16161a;
-  --cc-bg-card-hover: #1f1f25;
+  --cc-bg: #000000;
+  --cc-sidebar-bg: #09090b;
+  --cc-card-bg: #121214;
+  --cc-card-hover: #1c1c20;
   --cc-border: rgba(255, 255, 255, 0.08);
-  --cc-border-hover: rgba(255, 255, 255, 0.2);
+  --cc-border-hover: rgba(255, 255, 255, 0.18);
   --cc-cyan: #00f0ff;
-  --cc-pink: #ff0055;
-  --cc-text-primary: #ffffff;
-  --cc-text-secondary: #9e9ea7;
-  --cc-text-muted: #5e5e66;
+  --cc-pink: #ff0050;
+  --cc-white: #ffffff;
+  --cc-text-sub: #8e8e93;
 }
 
 * {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   box-sizing: border-box;
 }
 
 body {
-  background-color: var(--cc-black);
-  color: var(--cc-text-primary);
+  background-color: var(--cc-bg);
+  color: var(--cc-white);
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* Custom CapCut Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -47,110 +46,128 @@ body {
   background: #3f3f46;
 }
 
-/* CapCut Logo belgisi */
-.capcut-logo-mark {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* CapCut Header */
+.cc-header {
+  height: 60px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cc-border);
 }
 
-/* CapCut Usulidagi Qidiruv Qutisi */
-.cc-search-input {
-  background: #18181c;
+/* CapCut Qidiruv */
+.cc-search-bar {
+  background: #18181b;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  border-radius: 9999px;
   transition: all 0.2s ease;
 }
 
-.cc-search-input:focus {
-  background: #202026;
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+.cc-search-bar:focus-within {
+  background: #202024;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-/* CapCut Kategoriya Chips (Filtr tugmalari) */
-.cc-chip {
-  background: #18181c;
+/* CapCut Sidebar */
+.cc-sidebar {
+  width: 240px;
+  background: #09090b;
+  border-right: 1px solid var(--cc-border);
+}
+
+.cc-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
   color: #a1a1aa;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s ease;
 }
 
-.cc-chip:hover {
-  background: #24242c;
+.cc-nav-item:hover {
+  background: rgba(255, 255, 255, 0.06);
   color: #ffffff;
 }
 
-.cc-chip.active {
+.cc-nav-item.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* CapCut Kategoriya Chips */
+.cc-tag-chip {
+  background: #18181b;
+  color: #a1a1aa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.cc-tag-chip:hover {
+  background: #27272a;
+  color: #ffffff;
+}
+
+.cc-tag-chip.active {
   background: #ffffff;
   color: #000000;
   border-color: #ffffff;
   font-weight: 700;
 }
 
-/* CapCut Shablon Kartochkasi */
-.cc-template-card {
+/* CapCut Shablon Kartochkasi (9:16 Vertikal Video Card) */
+.cc-card {
   position: relative;
-  background: var(--cc-bg-card);
+  background: var(--cc-card-bg);
   border: 1px solid var(--cc-border);
-  border-radius: 1rem;
+  border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
-.cc-template-card:hover {
+.cc-card:hover {
   transform: translateY(-4px);
   border-color: var(--cc-border-hover);
-  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.9);
 }
 
-/* Avtomatik Moslashuv: Telefonda 9:16 Vertikal, Kompyuterda 16:9 Gorizontal */
-.cc-video-box {
+/* Video Box (9:16 nisbat) */
+.cc-video-wrapper {
   position: relative;
   width: 100%;
+  aspect-ratio: 9 / 16;
   background: #000000;
   overflow: hidden;
 }
 
-@media (min-width: 769px) {
-  .cc-video-box {
-    aspect-ratio: 16 / 9;
-  }
-}
-
-@media (max-width: 768px) {
-  .cc-video-box {
-    aspect-ratio: 9 / 16;
-  }
-}
-
-.cc-video-box video {
+.cc-video-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.cc-template-card:hover .cc-video-box video {
-  transform: scale(1.02);
+.cc-card:hover .cc-video-wrapper video {
+  transform: scale(1.03);
 }
 
-/* Play/Mute tugmalari */
-.cc-hover-controls {
-  opacity: 0;
-  transition: opacity 0.25s ease;
+/* Kartochka pastki ma'lumotlari */
+.cc-card-footer {
+  padding: 10px 12px;
+  background: #121214;
 }
 
-.cc-template-card:hover .cc-hover-controls {
-  opacity: 1;
-}
-
-/* Oq CapCut asosiy tugmasi */
-.cc-btn-white {
+/* Oq CapCut tugmasi */
+.cc-btn-primary {
   background: #ffffff;
   color: #000000;
   font-weight: 700;
@@ -158,13 +175,13 @@ body {
   transition: all 0.2s ease;
 }
 
-.cc-btn-white:hover {
-  background: #e4e4e7;
+.cc-btn-primary:hover {
+  background: #f4f4f5;
   transform: scale(1.02);
 }
 
 /* Qora / Shaffof tugma */
-.cc-btn-dark {
+.cc-btn-secondary {
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -172,47 +189,45 @@ body {
   transition: all 0.2s ease;
 }
 
-.cc-btn-dark:hover {
+.cc-btn-secondary:hover {
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Aylanuvchi musiqa plastinkasi (Spinning Vinyl Disc) */
-@keyframes spinDisc {
+/* Aylanuvchi musiqa plastinkasi */
+@keyframes spinVinyl {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.spinning-disc {
-  animation: spinDisc 6s linear infinite;
+.vinyl-disc {
+  animation: spinVinyl 6s linear infinite;
 }
 
 /* Modal Stili */
 .cc-modal-backdrop {
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.88);
   backdrop-filter: blur(16px);
 }
 
-.cc-modal-content {
-  background: #121215;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+.cc-modal-box {
+  background: #141416;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.95);
 }
 
-/* Toast Bildirishnoma */
+/* Toast */
 .cc-toast {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 9999;
-  background: #18181c;
+  background: #18181b;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 12px 20px;
   border-radius: 9999px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.8);
   display: flex;
   align-items: center;
   gap: 10px;

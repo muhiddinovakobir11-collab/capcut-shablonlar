@@ -1,5 +1,5 @@
 /**
- * CapCut Rasmiy Uslubidagi Shablonlar Portali
+ * CapCut Rasmiy Web Portali
  * Muallif: Akobir (CapCut Creator)
  */
 
@@ -105,13 +105,14 @@ const DEFAULT_TEMPLATES = [
 let templatesData = [...DEFAULT_TEMPLATES];
 let activeCategory = 'all';
 let searchQuery = '';
-let likedTemplates = new Set();
+let likedSet = new Set();
 
 // DOM elementlar
-const templatesGrid = document.getElementById('templates-grid');
+const grid = document.getElementById('templates-grid');
 const searchInput = document.getElementById('search-input');
-const chipsContainer = document.getElementById('chips-container');
 const emptyState = document.getElementById('empty-state');
+const toast = document.getElementById('cc-toast');
+const toastMsg = document.getElementById('cc-toast-msg');
 
 // Modal elementlar
 const modal = document.getElementById('cc-modal');
@@ -126,164 +127,138 @@ const modalClips = document.getElementById('cc-modal-clips');
 const modalUses = document.getElementById('cc-modal-uses');
 const modalCapcutBtn = document.getElementById('cc-modal-capcut-btn');
 const modalShareBtn = document.getElementById('cc-modal-share-btn');
+const modalQrImage = document.getElementById('cc-modal-qr');
 
-// Toast
-const toast = document.getElementById('cc-toast');
-const toastMessage = document.getElementById('cc-toast-msg');
-
-function showToast(msg) {
+function showToast(text) {
   if (!toast) return;
-  toastMessage.textContent = msg;
+  toastMsg.textContent = text;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
+  setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
 // Ma'lumotlarni yuklash
-async function loadTemplates() {
+async function loadData() {
   try {
     const res = await fetch('./data/templates.json?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         templatesData = data;
-        renderTemplates();
+        renderFeed();
       }
     }
   } catch (e) {
-    console.warn("Fayldan yuklashda zaxira ishlatildi:", e);
+    console.warn("Lokal ma'lumotlar bilan ishlanyapti:", e);
   }
 }
 
-// Kartochkalarni chizish
-function renderTemplates() {
-  if (!templatesGrid) return;
+// Lenta chizish
+function renderFeed() {
+  if (!grid) return;
 
-  const filtered = templatesData.filter(tpl => {
-    const matchesCat = activeCategory === 'all' || 
-                       (activeCategory === 'trending' ? tpl.isTrending : tpl.category === activeCategory);
-    const matchesSearch = tpl.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          tpl.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          (tpl.music && tpl.music.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCat && matchesSearch;
+  const filtered = templatesData.filter(t => {
+    const matchCat = activeCategory === 'all' || 
+                     (activeCategory === 'trending' ? t.isTrending : t.category === activeCategory);
+    const matchQuery = t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                       t.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                       (t.music && t.music.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchCat && matchQuery;
   });
 
   if (filtered.length === 0) {
-    templatesGrid.innerHTML = '';
+    grid.innerHTML = '';
     if (emptyState) emptyState.classList.remove('hidden');
     return;
   }
 
   if (emptyState) emptyState.classList.add('hidden');
 
-  templatesGrid.innerHTML = filtered.map(tpl => {
-    const isLiked = likedTemplates.has(tpl.id);
+  grid.innerHTML = filtered.map(t => {
+    const isLiked = likedSet.has(t.id);
     return `
-      <article class="cc-template-card group flex flex-col justify-between" data-id="${tpl.id}">
-        
-        <!-- Video konteyner (Telefonda 9:16, Kompyuterda 16:9) -->
-        <div class="cc-video-box relative cursor-pointer" onclick="openTemplateModal('${tpl.id}')">
+      <article class="cc-card group" onclick="openModal('${t.id}')">
+        <!-- 9:16 Video qismi -->
+        <div class="cc-video-wrapper cursor-pointer">
           <video 
-            src="${tpl.videoUrl}" 
-            poster="${tpl.posterUrl || ''}" 
+            src="${t.videoUrl}" 
+            poster="${t.posterUrl || ''}" 
             muted 
             loop 
             playsinline 
             preload="metadata"
           ></video>
 
-          <!-- Yuqori qatlam: Trending belgisi va Foydalanishlar soni -->
-          <div class="absolute top-2.5 left-2.5 right-2.5 flex justify-between items-center z-10 pointer-events-none">
-            ${tpl.isTrending ? `
-              <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider shadow">
-                Trend 🔥
-              </span>
-            ` : `
-              <span class="bg-black/60 backdrop-blur-md text-white/90 px-2 py-0.5 rounded-full text-[10px] font-medium border border-white/10">
-                ${tpl.category}
-              </span>
-            `}
+          <!-- Yuqori qatlam: Muallif va Foydalanishlar -->
+          <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
+            <div class="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full border border-white/10">
+              <img src="${t.creatorAvatar}" class="w-4 h-4 rounded-full object-cover">
+              <span class="text-[11px] font-semibold text-white/90">${t.creator}</span>
+            </div>
 
-            <div class="bg-black/70 backdrop-blur-md px-2 py-0.5 rounded-md text-[11px] font-medium text-white/90 flex items-center gap-1 border border-white/10">
-              <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <span>${tpl.uses}</span>
+            <div class="bg-black/60 backdrop-blur-md px-2 py-1 rounded-full text-[11px] font-medium text-white/90 flex items-center gap-1 border border-white/10">
+              <svg class="w-3 h-3 text-cyan-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <span>${t.uses}</span>
             </div>
           </div>
 
           <!-- O'rtadagi Play nishoni -->
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div class="w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
+            <div class="w-11 h-11 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
 
-          <!-- Pastki o'ng taraf: Video vaqti -->
+          <!-- Pastki o'ng: Davomiylik -->
           <div class="absolute bottom-2.5 right-2.5 pointer-events-none">
-            <span class="bg-black/80 px-2 py-0.5 rounded text-[10px] font-mono text-white/90">
-              ${tpl.duration}
+            <span class="bg-black/75 px-1.5 py-0.5 rounded text-[10px] font-mono text-zinc-300">
+              ${t.duration}
             </span>
           </div>
         </div>
 
-        <!-- Pastki axborot va harakatlar qismi -->
-        <div class="p-3.5 flex flex-col justify-between flex-grow bg-[#141418]">
+        <!-- Pastki qism: Sarlavha, Musiqa va Tugmalar -->
+        <div class="cc-card-footer flex flex-col justify-between flex-grow">
           <div>
-            <h3 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
-              ${tpl.title}
+            <h3 class="text-xs sm:text-sm font-bold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
+              ${t.title}
             </h3>
-
-            <!-- Muallif va Musiqa -->
-            <div class="flex items-center gap-2 mt-2">
-              <img src="${tpl.creatorAvatar}" alt="${tpl.creator}" class="w-5 h-5 rounded-full object-cover border border-white/20">
-              <span class="text-xs text-zinc-300 font-medium">${tpl.creator}</span>
-              <span class="w-1 h-1 rounded-full bg-zinc-600"></span>
-              <span class="text-[11px] text-zinc-400 truncate max-w-[120px]">${tpl.clips}</span>
-            </div>
+            <p class="text-[11px] text-zinc-400 mt-1 flex items-center gap-1 truncate">
+              <svg class="w-3 h-3 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+              <span class="truncate">${t.music || 'Original Sound'}</span>
+            </p>
           </div>
 
-          <!-- Pastki tugmalar qatori -->
-          <div class="mt-3.5 flex items-center justify-between gap-2 pt-2.5 border-t border-white/5">
-            <!-- Like tugmasi -->
-            <button 
-              onclick="toggleLike(event, '${tpl.id}')" 
-              class="flex items-center gap-1.5 text-xs ${isLiked ? 'text-pink-500 font-bold' : 'text-zinc-400 hover:text-white'} transition"
-            >
-              <svg class="w-4 h-4 ${isLiked ? 'fill-current' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2">
+          <div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between gap-2">
+            <!-- Like -->
+            <button onclick="handleLike(event, '${t.id}')" class="flex items-center gap-1 text-[11px] ${isLiked ? 'text-pink-500 font-bold' : 'text-zinc-400 hover:text-white'} transition">
+              <svg class="w-3.5 h-3.5 ${isLiked ? 'fill-current' : 'fill-none stroke-current'}" viewBox="0 0 24 24" stroke-width="2">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
-              <span>${tpl.likes}</span>
+              <span>${t.likes}</span>
             </button>
 
-            <!-- CapCut'da ochish tugmasi -->
+            <!-- CapCut'da ochish -->
             <a 
-              href="${tpl.capcutUrl}" 
+              href="${t.capcutUrl}" 
               target="_blank" 
-              rel="noopener noreferrer"
-              class="cc-btn-white px-3.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm"
+              rel="noopener noreferrer" 
               onclick="event.stopPropagation();"
+              class="cc-btn-primary px-3 py-1 text-[11px] flex items-center gap-1 shadow-sm"
             >
-              <span>Shablonni ochish</span>
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-              </svg>
+              <span>CapCut'da ochish</span>
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
           </div>
-
         </div>
-
       </article>
     `;
   }).join('');
 
-  attachVideoHover();
+  attachHoverPlay();
 }
 
-// Hover video ijrosi
-function attachVideoHover() {
-  const cards = document.querySelectorAll('.cc-template-card');
+function attachHoverPlay() {
+  const cards = document.querySelectorAll('.cc-card');
   cards.forEach(card => {
     const video = card.querySelector('video');
     if (!video) return;
@@ -299,41 +274,44 @@ function attachVideoHover() {
   });
 }
 
-// Like bosish
-window.toggleLike = function(e, id) {
+window.handleLike = function(e, id) {
   e.stopPropagation();
-  if (likedTemplates.has(id)) {
-    likedTemplates.delete(id);
+  if (likedSet.has(id)) {
+    likedSet.delete(id);
     showToast("Yoqtirish bekor qilindi");
   } else {
-    likedTemplates.add(id);
-    showToast("Sevimlilarga qo'shildi! ❤️");
+    likedSet.add(id);
+    showToast("Sevimlilarga saqlandi! ❤️");
   }
-  renderTemplates();
+  renderFeed();
 };
 
-// Modal ochish
-window.openTemplateModal = function(id) {
-  const tpl = templatesData.find(t => t.id === id);
-  if (!tpl || !modal) return;
+window.openModal = function(id) {
+  const t = templatesData.find(item => item.id === id);
+  if (!t || !modal) return;
 
-  modalTitle.textContent = tpl.title;
-  modalCreatorName.textContent = tpl.creator;
-  modalCreatorAvatar.src = tpl.creatorAvatar;
-  modalMusic.textContent = tpl.music || "Original Sound";
-  modalClips.textContent = tpl.clips;
-  modalUses.textContent = `${tpl.uses} marta ishlatildi`;
-  modalCapcutBtn.href = tpl.capcutUrl;
+  modalTitle.textContent = t.title;
+  modalCreatorName.textContent = t.creator;
+  modalCreatorAvatar.src = t.creatorAvatar;
+  modalMusic.textContent = t.music || "Original Sound";
+  modalClips.textContent = `${t.clips} talab qilinadi`;
+  modalUses.textContent = `${t.uses} marta ishlatildi`;
+  modalCapcutBtn.href = t.capcutUrl;
+
+  // QR kod yaratish (Telefon bilan skanerlab ochish uchun)
+  if (modalQrImage) {
+    modalQrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(t.capcutUrl)}`;
+  }
 
   modalShareBtn.onclick = () => {
-    navigator.clipboard.writeText(tpl.capcutUrl).then(() => {
+    navigator.clipboard.writeText(t.capcutUrl).then(() => {
       showToast("CapCut havolasi nusxalandi!");
     }).catch(() => {
       showToast("Nusxalandi!");
     });
   };
 
-  modalVideo.src = tpl.videoUrl;
+  modalVideo.src = t.videoUrl;
   modalVideo.currentTime = 0;
   modalVideo.play().catch(() => {});
 
@@ -341,8 +319,7 @@ window.openTemplateModal = function(id) {
   document.body.style.overflow = 'hidden';
 };
 
-// Modal yopish
-function closeTemplateModal() {
+function closeModal() {
   if (!modal) return;
   modal.classList.add('hidden');
   document.body.style.overflow = '';
@@ -352,12 +329,12 @@ function closeTemplateModal() {
   }
 }
 
-if (modalClose) modalClose.addEventListener('click', closeTemplateModal);
-if (modalBackdrop) modalBackdrop.addEventListener('click', closeTemplateModal);
+if (modalClose) modalClose.addEventListener('click', closeModal);
+if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-    closeTemplateModal();
+    closeModal();
   }
 });
 
@@ -365,40 +342,42 @@ document.addEventListener('keydown', (e) => {
 if (searchInput) {
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.trim();
-    renderTemplates();
+    renderFeed();
   });
 }
 
 // Kategoriya Chips
-if (chipsContainer) {
-  const chips = chipsContainer.querySelectorAll('.cc-chip');
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeCategory = chip.getAttribute('data-cat');
-      renderTemplates();
+const chips = document.querySelectorAll('.cc-tag-chip');
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeCategory = chip.getAttribute('data-cat');
+    renderFeed();
+  });
+});
+
+// Sidebar navigatsiyasi
+const navItems = document.querySelectorAll('.cc-nav-item');
+navItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    navItems.forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    const cat = item.getAttribute('data-cat') || 'all';
+    activeCategory = cat;
+
+    // chipsni ham moslash
+    chips.forEach(c => {
+      if (c.getAttribute('data-cat') === cat) {
+        chips.forEach(other => other.classList.remove('active'));
+        c.classList.add('active');
+      }
     });
-  });
-}
 
-// Obuna bo'lish tugmasi
-const followBtn = document.getElementById('follow-creator-btn');
-if (followBtn) {
-  let isFollowed = false;
-  followBtn.addEventListener('click', () => {
-    isFollowed = !isFollowed;
-    if (isFollowed) {
-      followBtn.textContent = "Obuna bo'lindi ✓";
-      followBtn.classList.replace('cc-btn-white', 'cc-btn-dark');
-      showToast("Akobir profiliga obuna bo'ldingiz!");
-    } else {
-      followBtn.textContent = "Obuna bo'lish +";
-      followBtn.classList.replace('cc-btn-dark', 'cc-btn-white');
-    }
+    renderFeed();
   });
-}
+});
 
-// Boshlash
-renderTemplates();
-document.addEventListener('DOMContentLoaded', loadTemplates);
+renderFeed();
+document.addEventListener('DOMContentLoaded', loadData);

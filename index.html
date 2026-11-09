@@ -3,16 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CapCut Templates | Akobir — Rasmiy Shablonlar Portali</title>
+  <title>CapCut Templates | Rasmiy Shablonlar Kutubxonasi — Akobir</title>
 
-  <!-- SEO Meta Teglar -->
-  <meta name="description" content="CapCut rasmiy uslubidagi eng sara video shablonlar to'plami. TikTok, Reels va Shorts uchun tayyor shablonlarni bir klikda CapCut ilovasida oching.">
+  <!-- SEO Meta -->
+  <meta name="description" content="CapCut rasmiy video shablonlar kutubxonasi. Trenddagi TikTok, Reels va Shorts shablonlarini to'g'ridan-to'g'ri CapCut ilovasida oching.">
   <meta name="author" content="Akobir">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="CapCut Templates | Akobir">
-  <meta property="og:description" content="CapCut uchun tayyor trend montaj shablonlari">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,299 +15,249 @@
   <!-- Maxsus CapCut Stillari -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="bg-black text-white selection:bg-cyan-400 selection:text-black">
+<body class="bg-black text-white antialiased">
 
-  <!-- ==================== CAPCUT ASOSIY HEADER ==================== -->
-  <header class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/10 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Chap tomon: CapCut Logotipi -->
-      <a href="#" class="flex items-center gap-2.5 flex-shrink-0 group">
-        <!-- Rasmiy CapCut trapetsiya logotipi (SVG) -->
-        <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
+  <!-- ==================== CAPCUT HEADER ==================== -->
+  <header class="cc-header sticky top-0 z-40 flex items-center justify-between px-4 sm:px-6">
+    
+    <!-- Chap: CapCut Logotipi va Havolalar -->
+    <div class="flex items-center gap-6">
+      <a href="#" class="flex items-center gap-2 group">
+        <!-- Rasmiy CapCut trapetsiya logotipi -->
+        <div class="w-7 h-7 rounded-lg bg-white flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition-transform">
           <svg viewBox="0 0 40 40" class="w-full h-full" fill="none">
             <path d="M7 11L20 4L33 11L20 18L7 11Z" fill="#000000"/>
             <path d="M7 29L20 22L33 29L20 36L7 29Z" fill="#000000"/>
           </svg>
         </div>
-        <div class="flex items-baseline gap-1.5">
-          <span class="text-lg font-black tracking-tight text-white">CapCut</span>
-          <span class="text-xs font-semibold text-zinc-400 hidden sm:inline">Templates</span>
-        </div>
+        <span class="text-lg font-black tracking-tight text-white">CapCut</span>
       </a>
 
-      <!-- O'rta: CapCut Qidiruv Maydoni -->
-      <div class="flex-1 max-w-xl mx-2 sm:mx-4">
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Shablon yoki musiqani qidiring (masalan: Ahmet Kaya, Beat, Trend)..." 
-            class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm cc-search-input rounded-full focus:outline-none"
-          >
-        </div>
-      </div>
-
-      <!-- O'ng tomon: Tugmalar va Admin -->
-      <div class="flex items-center gap-2.5 flex-shrink-0">
-        <a href="admin.html" title="Admin boshqaruv" class="cc-btn-dark px-3 py-1.5 text-xs font-medium flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>
-          <span class="hidden sm:inline">Admin</span>
+      <!-- Asosiy Navigatsiya (Desktop) -->
+      <nav class="hidden lg:flex items-center gap-5 text-xs font-semibold text-zinc-400">
+        <a href="#" class="hover:text-white transition flex items-center gap-1">
+          <span>Asboblar</span>
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </a>
-
-        <!-- Creator Akobir Profil Pill -->
-        <div class="flex items-center gap-2 pl-1 border-l border-white/10">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Akobir" class="w-8 h-8 rounded-full object-cover border border-cyan-400/60 p-0.5">
-          <span class="text-xs font-bold text-white hidden md:inline">Akobir</span>
-        </div>
-      </div>
-
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-    <!-- ==================== CAPCUT CREATOR PROFIL BANNERI ==================== -->
-    <section class="mb-8 p-5 sm:p-7 rounded-2xl bg-[#0f0f13] border border-white/10 relative overflow-hidden">
-      <!-- Orqa xira nur -->
-      <div class="absolute -right-16 -top-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      
-      <div class="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 relative z-10 text-center sm:text-left">
-        
-        <!-- Chap: Muallif ma'lumotlari -->
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <div class="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" 
-              alt="Akobir - CapCut Creator" 
-              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-white/20 shadow-xl"
-            >
-            <!-- CapCut Verified Badge -->
-            <div class="absolute -bottom-1 -right-1 bg-cyan-400 text-black p-1 rounded-full shadow-md" title="Tasdiqlangan CapCut Muallifi">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-center sm:justify-start gap-2">
-              <h1 class="text-xl sm:text-2xl font-black text-white">Akobir</h1>
-              <span class="px-2 py-0.5 rounded text-[10px] font-black bg-gradient-to-r from-cyan-400 to-blue-500 text-black uppercase tracking-wider">
-                PRO CREATOR
-              </span>
-            </div>
-            <p class="text-xs text-zinc-400 mt-1 max-w-md">
-              CapCut rasmiy shablonlar muallifi. Trenddagi TikTok, Reels va Ahmet Kaya musiqiy video montajlari.
-            </p>
-
-            <!-- Statistika raqamlari -->
-            <div class="flex items-center justify-center sm:justify-start gap-4 mt-3 text-xs">
-              <div>
-                <span class="font-bold text-white text-sm">3.2M</span>
-                <span class="text-zinc-500 ml-1">Ko'rishlar</span>
-              </div>
-              <span class="w-1 h-1 rounded-full bg-zinc-700"></span>
-              <div>
-                <span class="font-bold text-white text-sm">1.8M</span>
-                <span class="text-zinc-500 ml-1">Foydalanish</span>
-              </div>
-              <span class="w-1 h-1 rounded-full bg-zinc-700"></span>
-              <div>
-                <span class="font-bold text-cyan-400 text-sm">52.4K</span>
-                <span class="text-zinc-500 ml-1">Obunachilar</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- O'ng: Tugmalar -->
-        <div class="flex flex-wrap items-center justify-center gap-2.5">
-          <button id="follow-creator-btn" class="cc-btn-white px-5 py-2 text-xs font-bold shadow-md">
-            Obuna bo'lish +
-          </button>
-          
-          <a href="https://t.me/" target="_blank" rel="noopener" class="cc-btn-dark px-4 py-2 text-xs font-semibold flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-[#229ED9]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.77-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-            </svg>
-            <span>Telegram</span>
-          </a>
-
-          <a href="https://instagram.com/" target="_blank" rel="noopener" class="cc-btn-dark px-4 py-2 text-xs font-semibold flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-pink-400" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            <span>Instagram</span>
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== CAPCUT KATEGORIYA CHIPS ==================== -->
-    <div id="chips-container" class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs font-semibold">
-      <button class="cc-chip active px-4 py-2 rounded-full whitespace-nowrap" data-cat="all">
-        Barchasi
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="trending">
-        Trenddagilar 🔥
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="Ahmet Kaya">
-        Ahmet Kaya 🎬
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="Musiqa & Beat">
-        Musiqa & Beat 🎵
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="Slow Motion">
-        Slow Motion 🏎️
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="Sevgi & Lirika">
-        Sevgi & Lirika ✨
-      </button>
-      <button class="cc-chip px-4 py-2 rounded-full whitespace-nowrap" data-cat="Foto Kollaj">
-        Foto Kollaj 📸
-      </button>
+        <a href="#" class="text-white font-bold border-b-2 border-white pb-0.5">Shablonlar</a>
+        <a href="#" class="hover:text-white transition">Musiqalar</a>
+        <a href="#" class="hover:text-white transition">Ilhomlanish</a>
+      </nav>
     </div>
 
-    <!-- ==================== CAPCUT SHABLONLAR FEED ==================== -->
-    <div id="templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Shablonlar JavaScript orqali shu yerga yuklanadi -->
-    </div>
-
-    <!-- Bo'sh holat -->
-    <div id="empty-state" class="hidden py-16 text-center">
-      <div class="w-14 h-14 mx-auto rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-500 mb-3">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- O'rta: CapCut Qidiruv Maydoni -->
+    <div class="flex-1 max-w-md mx-3">
+      <div class="relative cc-search-bar px-3.5 py-1.5 flex items-center gap-2">
+        <svg class="w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
-      </div>
-      <h3 class="text-base font-bold text-white">Shablon topilmadi</h3>
-      <p class="text-xs text-zinc-400 mt-1">Boshqa so'z bilan qidirib ko'ring yoki boshqa kategoriyani tanlang.</p>
-    </div>
-
-  </main>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="mt-20 py-8 border-t border-white/10 text-xs text-zinc-500 text-center">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-white">Akobir CapCut Hub</span>
-        <span>•</span>
-        <span>CapCut® Bytedance Ltd kompaniyasining savdo belgisi</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="admin.html" class="hover:text-white transition">Admin Panel</a>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="CapCut shablonlarini qidiring..." 
+          class="w-full bg-transparent text-xs text-white placeholder-zinc-500 focus:outline-none"
+        >
       </div>
     </div>
-  </footer>
 
-  <!-- ==================== CAPCUT DETAIL POPUP (MODAL) ==================== -->
+    <!-- O'ng: Admin, Yuklab olish va Akobir Profil -->
+    <div class="flex items-center gap-3">
+      <a href="admin.html" class="cc-btn-secondary px-3 py-1.5 text-xs font-medium flex items-center gap-1">
+        <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        <span class="hidden sm:inline">Admin</span>
+      </a>
+
+      <!-- Akobir Profil avatar -->
+      <div class="flex items-center gap-2 pl-2 border-l border-white/10">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Akobir" class="w-7 h-7 rounded-full object-cover border border-cyan-400">
+          <div class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-cyan-400 rounded-full border border-black"></div>
+        </div>
+        <span class="text-xs font-bold text-white hidden md:inline">Akobir</span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ==================== ASOSIY BODY LAYOUT (SIDEBAR + FEED) ==================== -->
+  <div class="flex min-h-[calc(100vh-60px)]">
+    
+    <!-- CHAP SIDEBAR (Desktop) -->
+    <aside class="cc-sidebar hidden md:flex flex-col justify-between p-3 flex-shrink-0">
+      <div class="space-y-1">
+        <a href="#" class="cc-nav-item active" data-cat="all">
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Barcha Shablonlar</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="Ahmet Kaya">
+          <svg class="w-4 h-4 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Ahmet Kaya Maxsus</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="trending">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+          <span>Trenddagilar (TikTok)</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="Musiqa & Beat">
+          <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+          <span>Musiqiy Bitlar</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="Slow Motion">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Slow Motion 4K</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="Sevgi & Lirika">
+          <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span>Sevgi & Lirika</span>
+        </a>
+
+        <a href="#" class="cc-nav-item" data-cat="Foto Kollaj">
+          <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Foto Kollaj</span>
+        </a>
+      </div>
+
+      <!-- Pastki Creator Karta -->
+      <div class="p-3.5 rounded-xl bg-[#131316] border border-white/5 text-xs">
+        <div class="flex items-center gap-2">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover">
+          <div>
+            <p class="font-bold text-white">Akobir</p>
+            <p class="text-[10px] text-cyan-400 font-semibold">LV.5 Pro Creator</p>
+          </div>
+        </div>
+        <p class="text-[11px] text-zinc-400 mt-2">Yangi shablonlar har kuni e'lon qilinadi.</p>
+      </div>
+    </aside>
+
+    <!-- O'NG ASOSIY KONTENT -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+      
+      <!-- Kategoriya Chips Qatori -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+        <button class="cc-tag-chip active" data-cat="all">Barchasi</button>
+        <button class="cc-tag-chip" data-cat="Ahmet Kaya">Ahmet Kaya 🎬</button>
+        <button class="cc-tag-chip" data-cat="trending">Trenddagilar 🔥</button>
+        <button class="cc-tag-chip" data-cat="Musiqa & Beat">Musiqiy Bitlar 🎵</button>
+        <button class="cc-tag-chip" data-cat="Slow Motion">Slow Motion 🏎️</button>
+        <button class="cc-tag-chip" data-cat="Sevgi & Lirika">Sevgi & Lirika ✨</button>
+        <button class="cc-tag-chip" data-cat="Foto Kollaj">Foto Kollaj 📸</button>
+      </div>
+
+      <!-- Shablonlar To'ri (4-5 Ustunli CapCut uslubi) -->
+      <div id="templates-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4">
+        <!-- JS orqali kartochkalar chiziladi -->
+      </div>
+
+      <!-- Bo'sh holat -->
+      <div id="empty-state" class="hidden py-20 text-center">
+        <div class="w-12 h-12 mx-auto rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-500 mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <p class="text-sm font-bold text-white">Hech qanday shablon topilmadi</p>
+        <p class="text-xs text-zinc-500 mt-1">Boshqa so'z bilan qidirib ko'ring</p>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ==================== CAPCUT SHABLON POPUP (MODAL) ==================== -->
   <div id="cc-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 hidden">
-    <!-- Orqa xira fon -->
+    <!-- Orqa fon -->
     <div id="cc-modal-backdrop" class="absolute inset-0 cc-modal-backdrop cursor-pointer"></div>
 
-    <!-- Modal Kontent -->
-    <div class="cc-modal-content relative w-full max-w-4xl z-10 flex flex-col md:flex-row max-h-[92vh]">
+    <!-- Modal qutisi -->
+    <div class="cc-modal-box relative w-full max-w-3xl z-10 flex flex-col md:flex-row overflow-hidden max-h-[90vh]">
       
-      <!-- Yopish tugmasi (X) -->
-      <button id="cc-modal-close" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/70 border border-white/10 text-white flex items-center justify-center hover:bg-black transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
+      <!-- Yopish (X) -->
+      <button id="cc-modal-close" class="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-black/70 border border-white/10 text-white flex items-center justify-center hover:bg-black transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
 
-      <!-- Chap: Video Pleer (Telefonda 9:16, Kompyuterda 16:9) -->
-      <div class="md:w-1/2 bg-black flex items-center justify-center min-h-[320px] md:min-h-0 border-b md:border-b-0 md:border-r border-white/10">
+      <!-- Chap: 9:16 Video Pleer -->
+      <div class="md:w-[45%] bg-black flex items-center justify-center min-h-[300px] border-b md:border-b-0 md:border-r border-white/10">
         <video 
           id="cc-modal-video" 
           controls 
           loop 
           playsinline 
-          class="w-full h-full max-h-[70vh] object-contain"
+          class="w-full h-full max-h-[65vh] object-contain"
         ></video>
       </div>
 
-      <!-- O'ng: CapCut Shablon Tafsilotlari -->
-      <div class="md:w-1/2 p-6 sm:p-7 flex flex-col justify-between overflow-y-auto">
+      <!-- O'ng: CapCut Ma'lumotlari -->
+      <div class="md:w-[55%] p-5 sm:p-6 flex flex-col justify-between overflow-y-auto">
         <div>
-          <!-- Muallif info -->
-          <div class="flex items-center gap-3 pb-4 border-b border-white/10">
-            <img id="cc-modal-creator-avatar" src="" alt="Creator" class="w-10 h-10 rounded-full object-cover border border-cyan-400">
+          <!-- Muallif -->
+          <div class="flex items-center gap-2.5 pb-3 border-b border-white/10">
+            <img id="cc-modal-creator-avatar" src="" class="w-9 h-9 rounded-full object-cover border border-cyan-400">
             <div>
-              <div class="flex items-center gap-1.5">
-                <span id="cc-modal-creator-name" class="font-bold text-white text-sm">Akobir</span>
-                <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
+              <div class="flex items-center gap-1">
+                <span id="cc-modal-creator-name" class="font-bold text-white text-xs">Akobir</span>
+                <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
               </div>
-              <p class="text-[11px] text-zinc-400">CapCut Tasdiqlangan Muallif</p>
+              <p class="text-[10px] text-zinc-400">CapCut Tasdiqlangan Muallifi</p>
             </div>
           </div>
 
           <!-- Sarlavha -->
-          <h2 id="cc-modal-title" class="text-xl sm:text-2xl font-black text-white mt-4">
+          <h2 id="cc-modal-title" class="text-base sm:text-lg font-black text-white mt-3">
             Shablon nomi
           </h2>
 
-          <div class="mt-3 flex items-center gap-2 text-xs text-zinc-400">
-            <span id="cc-modal-uses" class="text-white font-semibold">120K foydalanish</span>
+          <div class="mt-2 flex items-center gap-2 text-[11px] text-zinc-400">
+            <span id="cc-modal-uses" class="text-white font-medium">485K foydalanish</span>
             <span>•</span>
-            <span id="cc-modal-clips" class="text-cyan-400 font-medium">5 ta klip kerak</span>
+            <span id="cc-modal-clips" class="text-cyan-400 font-semibold">2 ta klip</span>
           </div>
 
-          <!-- CapCut Musiqa qutisi (Aylanuvchi vinil plastinka bilan) -->
-          <div class="mt-6 p-3.5 rounded-xl bg-black/50 border border-white/10 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-zinc-900 border border-white/20 flex items-center justify-center flex-shrink-0 spinning-disc">
-              <div class="w-3.5 h-3.5 rounded-full bg-cyan-400"></div>
+          <!-- Musiqa qutisi -->
+          <div class="mt-4 p-3 rounded-xl bg-black/60 border border-white/10 flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-zinc-900 border border-white/20 flex items-center justify-center flex-shrink-0 vinyl-disc">
+              <div class="w-2.5 h-2.5 rounded-full bg-cyan-400"></div>
             </div>
             <div class="overflow-hidden">
-              <p class="text-[11px] text-zinc-400">Musiqa treki</p>
+              <p class="text-[10px] text-zinc-400">Musiqa</p>
               <p id="cc-modal-music" class="text-xs font-bold text-white truncate">Track Name</p>
             </div>
           </div>
 
-          <!-- Ko'rsatma -->
-          <div class="mt-5 p-3.5 rounded-xl bg-zinc-900/40 border border-white/5 text-xs text-zinc-300">
-            <p class="font-bold text-white mb-1">Qanday ishlatiladi?</p>
-            <p class="text-[11px] text-zinc-400 leading-relaxed">
-              1. "CapCut'da ochish" tugmasini bosing.<br>
-              2. CapCut ilovasida shablon ochiladi.<br>
-              3. O'z rasm va videolaringizni qo'ying va eksport qiling!
-            </p>
+          <!-- Mobil Skaner (QR Kod) -->
+          <div class="mt-4 p-3 rounded-xl bg-zinc-900/50 border border-white/5 flex items-center gap-3">
+            <img id="cc-modal-qr" src="" alt="QR" class="w-16 h-16 rounded-lg bg-white p-1 flex-shrink-0">
+            <div>
+              <p class="text-xs font-bold text-white">Telefonda ochish</p>
+              <p class="text-[10px] text-zinc-400 mt-0.5 leading-relaxed">
+                Kamerangiz bilan QR kodni skanerlang va CapCut ilovasida darhol oching.
+              </p>
+            </div>
           </div>
         </div>
 
-        <!-- Pastki harakat tugmalari -->
-        <div class="mt-6 flex flex-col gap-2.5">
+        <!-- Tugmalar -->
+        <div class="mt-5 flex flex-col gap-2">
           <a 
             id="cc-modal-capcut-btn" 
             href="#" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="cc-btn-white py-3.5 px-6 text-sm font-bold text-center flex items-center justify-center gap-2 shadow-lg"
+            class="cc-btn-primary py-3 px-5 text-xs font-bold text-center flex items-center justify-center gap-1.5 shadow-lg"
           >
             <span>Shablondan foydalanish (CapCut)</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-            </svg>
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
 
           <button 
             id="cc-modal-share-btn" 
-            class="cc-btn-dark py-2.5 px-4 text-xs font-semibold flex items-center justify-center gap-2"
+            class="cc-btn-secondary py-2 px-3 text-xs font-semibold flex items-center justify-center gap-1.5"
           >
-            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-            </svg>
-            <span>Havolani nusxalash</span>
+            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+            <span>Havoladan nusxa olish</span>
           </button>
         </div>
 
@@ -321,15 +266,12 @@
     </div>
   </div>
 
-  <!-- ==================== TOAST BILDIRISHNOMA ==================== -->
+  <!-- Toast -->
   <div id="cc-toast" class="cc-toast">
-    <div class="w-5 h-5 rounded-full bg-cyan-400/20 text-cyan-400 flex items-center justify-center text-xs font-bold">
-      ✓
-    </div>
-    <span id="cc-toast-msg" class="text-xs font-medium text-white">Xabar matni</span>
+    <div class="w-4 h-4 rounded-full bg-cyan-400 text-black flex items-center justify-center text-[10px] font-bold">✓</div>
+    <span id="cc-toast-msg" class="text-xs font-medium text-white">Xabar</span>
   </div>
 
-  <!-- Asosiy Skript -->
   <script src="./js/app.js"></script>
 </body>
 </html>
