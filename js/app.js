@@ -83,7 +83,7 @@ async function loadTemplates() {
       tag: "Premyera",
       videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-a-guitarist-playing-on-stage-42475-large.mp4",
       posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
-      capcutUrl: "https://www.capcut.com/sv2/ZS9fkB7qsxRT3-yQQkL/"
+      capcutUrl: "https://www.capcut.com/sv2/ZS9fkQmeNAKkc-r4Nyi/"
     }
       {
         id: "template-1",
